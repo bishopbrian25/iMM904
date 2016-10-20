@@ -36,7 +36,7 @@ compounds:
   lower: 0.0
 - id: M_4abz_e
   reaction: R_EX_4abz_e_
-  lower: 0.0
+  lower: -0.000001
 - id: M_5aop_e
   reaction: R_EX_5aop_e_
   lower: 0.0
@@ -99,7 +99,7 @@ compounds:
   lower: 0.0
 - id: M_btn_e
   reaction: R_EX_btn_e_
-  lower: 0.0
+  lower: -0.000001
 - id: M_chol_e
   reaction: R_EX_chol_e_
   lower: 0.0
@@ -276,7 +276,7 @@ compounds:
   lower: 0.0
 - id: M_inost_e
   reaction: R_EX_inost_e_
-  lower: 0.0
+  lower: -0.000001
 - id: M_ins_e
   reaction: R_EX_ins_e_
   lower: 0.0
@@ -322,7 +322,7 @@ compounds:
   reaction: R_EX_na1_e_
 - id: M_nac_e
   reaction: R_EX_nac_e_
-  lower: 0.0
+  lower: -0.000001
 - id: M_nadp_e
   reaction: R_EX_nadp_e_
   lower: 0.0
@@ -374,7 +374,7 @@ compounds:
   reaction: R_EX_pi_e_
 - id: M_pnto_R_e
   reaction: R_EX_pnto_R_e_
-  lower: 0.0
+  lower: -0.000001
 - id: M_pro_L_e
   reaction: R_EX_pro_L_e_
   lower: 0.0
@@ -427,7 +427,7 @@ compounds:
   lower: 0.0
 - id: M_thm_e
   reaction: R_EX_thm_e_
-  lower: 0.0
+  lower: -0.000001
 - id: M_thmmp_e
   reaction: R_EX_thmmp_e_
   lower: 0.0
