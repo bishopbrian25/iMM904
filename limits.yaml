@@ -1,3 +1,21 @@
 - reaction: R_ATPM
   lower: 1.0
   upper: 1.0
+- reaction: R_OMPDC
+  lower: 0
+  upper: 0
+- reaction: R_METS
+  lower: 0
+  upper: 0
+- reaction: R_IPMD
+  lower: 0
+  upper: 0
+- reaction: R_IGPDH
+  lower: 0
+  upper: 0
+- reaction: R_AHSERL
+  lower: 0
+  upper: 0
+- reaction: R_AHSERL2
+  lower: 0
+  upper: 0

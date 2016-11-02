@@ -165,7 +165,7 @@ compounds:
   lower: 0.0
 - id: M_etoh_e
   reaction: R_EX_etoh_e_
-  lower: -10.0
+  lower: 0.0
 - id: M_fe2_e
   reaction: R_EX_fe2_e_
 - id: M_fecost_e
@@ -194,7 +194,7 @@ compounds:
   lower: 0.0
 - id: M_gal_e
   reaction: R_EX_gal_e_
-  lower: -10.0
+  lower: 0.0
 - id: M_galur_e
   reaction: R_EX_galur_e_
   lower: 0.0
@@ -221,7 +221,7 @@ compounds:
   lower: 0.0
 - id: M_glyc_e
   reaction: R_EX_glyc_e_
-  lower: -10.0
+  lower: 0.0
 - id: M_gsn_e
   reaction: R_EX_gsn_e_
   lower: 0.0
@@ -249,7 +249,7 @@ compounds:
   lower: 0.0
 - id: M_his_L_e
   reaction: R_EX_his_L_e_
-  lower: -10.0
+  lower: -100.0
 - id: M_hxan_e
   reaction: R_EX_hxan_e_
   lower: 0.0
@@ -296,7 +296,7 @@ compounds:
   lower: 0.0
 - id: M_leu_L_e
   reaction: R_EX_leu_L_e_
-  lower: 0.0
+  lower: -100.0
 - id: M_lys_L_e
   reaction: R_EX_lys_L_e_
   lower: 0.0
@@ -457,7 +457,7 @@ compounds:
   lower: 0.0
 - id: M_ura_e
   reaction: R_EX_ura_e_
-  lower: -10.0
+  lower: -100.0
 - id: M_urea_e
   reaction: R_EX_urea_e_
   lower: 0.0

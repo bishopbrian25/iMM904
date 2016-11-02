@@ -1,3 +1,40 @@
+- id: R_MHPGLUT
+  name: R_5_methyltetrahydropteroyltriglutamate_homocysteine_S_methyltransferase
+  genes: YER091C
+  equation: '|M_hcys_L_c[Cytosol]| + |M_mhpglu_c[Cytosol]| => |M_hpglu_c[Cytosol]| + |M_met_L_c[Cytosol]|'
+  subsystem: S_Methionine_Metabolism
+- id: R_AHSERL
+  name: R_O_acetylhomoserine__thiol__lyase
+  genes: YLR303W
+  equation: '|M_achms_c[Cytosol]| + |M_ch4s_c[Cytosol]| => |M_ac_c[Cytosol]| + |M_h_c[Cytosol]|
+    + |M_met_L_c[Cytosol]|'
+  subsystem: S_Methionine_Metabolism
+- id: R_AHSERL2
+  name: R_O_acetylhomoserine__thiol__lyase
+  genes: YLR303W
+  equation: '|M_achms_c[Cytosol]| + |M_h2s_c[Cytosol]| => |M_ac_c[Cytosol]| + |M_h_c[Cytosol]|
+    + |M_hcys_L_c[Cytosol]|'
+  subsystem: S_Methionine_Metabolism
+- id: R_OMPDC
+  name: R_orotidine_5__phosphate_decarboxylase
+  genes: YEL021W
+  equation: '|M_h_c[Cytosol]| + |M_orot5p_c[Cytosol]| => |M_co2_c[Cytosol]| + |M_ump_c[Cytosol]|'
+  subsystem: S_Purine_and_Pyrimidine_Biosynthesis
+- id: R_METS
+  name: R_methionine_synthase
+  genes: YER091C
+  equation: '|M_5mthf_c[Cytosol]| + |M_hcys_L_c[Cytosol]| => |M_h_c[Cytosol]| + |M_met_L_c[Cytosol]| + |M_thf_c[Cytosol]|'
+  subsystem: S_Methionine_Metabolism
+- id: R_IPMD
+  name: R_3_isopropylmalate_dehydrogenase
+  genes: YCL018W
+  equation: '|M_3c2hmp_c[Cytosol]| + |M_nad_c[Cytosol]| => |M_3c4mop_c[Cytosol]| + |M_h_c[Cytosol]| + |M_nadh_c[Cytosol]|'
+  subsystem: S_Valine__Leucine__and_Isoleucine_Metabolism
+- id: R_IGPDH
+  name: R_imidazoleglycerol_phosphate_dehydratase
+  genes: YOR202W
+  equation: '|M_eig3p_c[Cytosol]| => |M_h2o_c[Cytosol]| + |M_imacp_c[Cytosol]|'
+  subsystem: S_Histidine_Metabolism
 - id: R_13BGH
   name: R_Endo_1_3_beta_glucan_glucohydrase
   genes: YGR282C
@@ -787,18 +824,6 @@
   equation: '|M_air_c[Cytosol]| + (2) |M_h_c[Cytosol]| => |M_4ahmmp_c[Cytosol]| +
     |M_gcald_c[Cytosol]| + |M_pi_c[Cytosol]|'
   subsystem: S_Thiamine_Metabolism
-- id: R_AHSERL
-  name: R_O_acetylhomoserine__thiol__lyase
-  genes: YLR303W
-  equation: '|M_achms_c[Cytosol]| + |M_ch4s_c[Cytosol]| => |M_ac_c[Cytosol]| + |M_h_c[Cytosol]|
-    + |M_met_L_c[Cytosol]|'
-  subsystem: S_Methionine_Metabolism
-- id: R_AHSERL2
-  name: R_O_acetylhomoserine__thiol__lyase
-  genes: YLR303W
-  equation: '|M_achms_c[Cytosol]| + |M_h2s_c[Cytosol]| => |M_ac_c[Cytosol]| + |M_h_c[Cytosol]|
-    + |M_hcys_L_c[Cytosol]|'
-  subsystem: S_Methionine_Metabolism
 - id: R_AICART
   name: R_phosphoribosylaminoimidazolecarboxamide_formyltransferase
   genes: YLR028C or YMR120C
@@ -7801,7 +7826,7 @@
     |M_asn_L_c[Cytosol]| + (0.297500) |M_asp_L_c[Cytosol]| + (59.276000) |M_atp_c[Cytosol]|
     + (0.044700) |M_cmp_c[Cytosol]| + (0.006600) |M_cys_L_c[Cytosol]| + (0.003600)
     |M_damp_c[Cytosol]| + (0.002400) |M_dcmp_c[Cytosol]| + (0.002400) |M_dgmp_c[Cytosol]|
-    + (0.003600) |M_dtmp_c[Cytosol]| + (0.000001) |M_ergst_c[Cytosol]| + (0.105400)
+    + (0.003600) |M_dtmp_c[Cytosol]| + (0.000700) |M_ergst_c[Cytosol]| + (0.105400)
     |M_gln_L_c[Cytosol]| + (0.301800) |M_glu_L_c[Cytosol]| + (0.290400) |M_gly_c[Cytosol]|
     + (0.518500) |M_glycogen_c[Cytosol]| + (0.046000) |M_gmp_c[Cytosol]| + (59.276000)
     |M_h2o_c[Cytosol]| + (0.066300) |M_his_L_c[Cytosol]| + (0.192700) |M_ile_L_c[Cytosol]|
