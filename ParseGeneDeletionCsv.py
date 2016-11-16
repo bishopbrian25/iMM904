@@ -28,12 +28,12 @@ def output_results(gene_dict):
     writer.writerow(["No.", "Deletion", "Glucose (aerobe)", "Glucose (anaerobe)", "Galactose", "Glycerol", "Ethanol", " ", "Glucose (aerobe)", "Glucose (anaerobe)", "Galactose", "Glycerol", "Ethanol"])
     i = 1 # Gives each gene deletion a number
     for gene, flux_percent in gene_dict.iteritems():
-        writer.writerow([i, gene, flux_percent[0], flux_percent[1], flux_percent[2], flux_percent[3], flux_percent[4],flux_percent[5], flux_percent[6], flux_percent[7], flux_percent[8], flux_percent[9], flux_percent[10]])
+        writer.writerow([i, gene, flux_percent[0], flux_percent[1], flux_percent[2], flux_percent[3], flux_percent[4], flux_percent[5], flux_percent[6], flux_percent[7], flux_percent[8], flux_percent[9], flux_percent[10]])
         i += 1 # iterate reaction counter
 
 
-my_exp = read_gene_file("results.csv")
-compare_exp = read_gene_file("compare.csv")
+my_exp = read_gene_file("raw_results.csv")
+compare_exp = read_gene_file("paper_exp.csv")
 
 compared_exp = compare(compare_exp, my_exp)
 

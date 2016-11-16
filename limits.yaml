@@ -4,9 +4,6 @@
 - reaction: R_OMPDC
   lower: 0
   upper: 0
-- reaction: R_METS
-  lower: 0
-  upper: 0
 - reaction: R_IPMD
   lower: 0
   upper: 0

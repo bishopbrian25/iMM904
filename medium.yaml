@@ -206,7 +206,7 @@ compounds:
   lower: 0.0
 - id: M_glc_D_e
   reaction: R_EX_glc_e_
-  lower: -10.0
+  lower: 0.0
 - id: M_gln_L_e
   reaction: R_EX_gln_L_e_
   lower: 0.0
