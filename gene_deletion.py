@@ -20,9 +20,7 @@ def run_tests(cutoff):
     gene_dict = {}
     # The medium that we are limiting in each of the experiments
     medium_ids = ['R_EX_glc_e_', 'R_EX_gal_e_', 'R_EX_glyc_e_', 'R_EX_etoh_e_']
-
     aerobe = True # Our first glucose exp will be aerobe
-
     for exp in medium_ids:
         # We are working on a glucose exp
         if exp == 'R_EX_glc_e_':
@@ -40,15 +38,15 @@ def run_tests(cutoff):
             mm.limits['R_EX_co2_e_'].lower = -10.0
         # We are giving some the exp nutrient
         mm.limits[exp].lower = -10.0
-        print("Working on exp " + exp)
+        #print("Working on exp " + exp)
         # Run the test
         simulation = dict(moma_test.gene_deletion(model, mm, solver))
         # Put the experiment in a dictionary for output later
         for gene, flux_percent in simulation.iteritems():
-
             # If the flux is greater then the cutoff, then we have a viable
             if flux_percent >= cutoff:
                 flux = "1"
+                #print("1")
             # The knockout was not viable
             else:
                 flux = "0"
@@ -148,15 +146,21 @@ def combine_gene(my_exp, compare_exp):
 #gene_dictionary = read_gene_file("compare_exp.csv")
 compare_exp = read_gene_file("paper_exp.csv")
 
-for i in range(100):
+results = {}
+for i in range(20):
     # Test every possible cutoff between 0 and 1
-    cutoff = float(i / 100)
+    cutoff = float(i) / float(20)
     gene_dict = run_tests(cutoff)
     gene_dictionary = combine_gene(gene_dict, compare_exp)
     gene_dictionary = clean_dictionary(gene_dictionary)
     medium_dictionary = calc_stat(gene_dictionary)
+    results[cutoff] = medium_dictionary
+
+
+
+for cutoff, medium_results in results.iteritems():
     print("Cutoff " + str(cutoff) + ": ")
-    print(medium_dictionary)
+    print(medium_results)
 
 
 #output_results(gene_dict)
