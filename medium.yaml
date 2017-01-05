@@ -108,7 +108,7 @@ compounds:
   lower: 0.0
 - id: M_co2_e
   reaction: R_EX_co2_e_
-  lower: -10.0
+  lower: 0.0
 - id: M_crn_e
   reaction: R_EX_crn_e_
   lower: 0.0
@@ -206,7 +206,7 @@ compounds:
   lower: 0.0
 - id: M_glc_D_e
   reaction: R_EX_glc_e_
-  lower: 0.0
+  lower: -10.0
 - id: M_gln_L_e
   reaction: R_EX_gln_L_e_
   lower: 0.0

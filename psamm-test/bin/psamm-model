@@ -1,11 +1,10 @@
 #!/Users/bbishop/Desktop/iMM904/psamm-test/bin/python
-
-# -*- coding: utf-8 -*-
-import re
+# EASY-INSTALL-ENTRY-SCRIPT: 'psamm==0.26','console_scripts','psamm-model'
+__requires__ = 'psamm==0.26'
 import sys
-
-from psamm.command import main
+from pkg_resources import load_entry_point
 
 if __name__ == '__main__':
-    sys.argv[0] = re.sub(r'(-script\.pyw|\.exe)?$', '', sys.argv[0])
-    sys.exit(main())
+    sys.exit(
+        load_entry_point('psamm==0.26', 'console_scripts', 'psamm-model')()
+    )
