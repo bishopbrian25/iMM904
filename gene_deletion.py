@@ -153,43 +153,48 @@ def _round(my_exp, cutoff):
 
 #gene_dictionary = read_gene_file("compare_exp.csv")
 
-def comparing(compare_file):
-    compare_exp = read_gene_file("paper_exp.csv", [2, 3, 4, 6, 7])
-    my_exp = read_gene_file(compare_file, [2, 3, 4, 5, 6])
-    my_exp = _round(my_exp, 0.5)
-    #print(my_exp)
-    #gene_dict = run_tests()
-    gene_dictionary = combine_gene(my_exp, compare_exp)
-    gene_dictionary = clean_dictionary(gene_dictionary)
-    medium_dictionary = calc_stat(gene_dictionary)
-    for medium, results in medium_dictionary.iteritems():
-        TP = results[0]
-        TN = results[2]
-        FP = results[1]
-        FN = results[3]
-        print("Medium: " + str(medium))
-        print("TP: " + str(results[0]))
-        print("TN: " + str(results[2]))
-        print("FP: " + str(results[1]))
-        print("FN: " + str(results[3]))
-        print("")
-        mcc = ((TP*TN)-(FP*FN))/math.sqrt((TP+FP)*(TP+FN)*(TN+FP)*(TN+FN))
-        print("MCC: " + str(mcc))
-        print("")
-        writer2 = csv.writer(open('mcc_results.csv', 'w+'))
-        # Header for the table
-        writer2.writerow(["Algorithm ", "True Positives", "True Negatives", "False Positives",  "False Negatives", "MCC"])
-        writer2.writerow([compare_file, TP, TN, FP, FN, mcc])
-        #medium_dictionary[medium] += [mcc]
+def comparing(all_files):
+    writer2 = csv.writer(open('mcc_results.csv', 'w+'))
+    for compare_file in all_files:
+        compare_exp = read_gene_file("paper_exp.csv", [2, 3, 4, 6, 7])
+        my_exp = read_gene_file(compare_file, [2, 3, 4, 5, 6])
+        my_exp = _round(my_exp, 0.5)
+        #print(my_exp)
+        #gene_dict = run_tests()
+        gene_dictionary = combine_gene(my_exp, compare_exp)
+        gene_dictionary = clean_dictionary(gene_dictionary)
+        medium_dictionary = calc_stat(gene_dictionary)
+        writer2.writerow(["Algorithm ","Medium", "True Positives", "True Negatives", "False Positives",  "False Negatives", "MCC"])
+        for medium, results in medium_dictionary.iteritems():
+            TP = results[0]
+            TN = results[2]
+            FP = results[1]
+            FN = results[3]
+            print("Medium: " + str(medium))
+            print("TP: " + str(results[0]))
+            print("TN: " + str(results[2]))
+            print("FP: " + str(results[1]))
+            print("FN: " + str(results[3]))
+            print("")
+            mcc = ((TP*TN)-(FP*FN))/math.sqrt((TP+FP)*(TP+FN)*(TN+FP)*(TN+FN))
+            print("MCC: " + str(mcc))
+            print("")
+            # Header for the table
+            writer2.writerow([compare_file, medium, TP, TN, FP, FN, mcc])
+            #medium_dictionary[medium] += [mcc]
     return medium_dictionary
 
 
     #output_results(gene_dict)
+def run():
+    algorithm = "qlp3"
+    gene_dict = run_tests(algorithm)
+    output_results(gene_dict, algorithm)
 
-#algorithm = "qlp3"
-#gene_dict = run_tests(algorithm)
+
+run()
 #print(gene_dict)
-#output_results(gene_dict, algorithm)
+
 #print("FINISHED")
-files = ["lp3_results.csv", "qlp3_results.csv", "qlp2_results.csv"]
-medium_dictionary = comparing('lp3_results.csv')
+#files = ["lp3_results.csv", "qlp3_results.csv", "qlp2_results.csv", "lp2.csv"]
+#medium_dictionary = comparing(files)

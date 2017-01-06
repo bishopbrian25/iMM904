@@ -83,7 +83,7 @@ def gene_deletion(model, mm, solver, algorithm):
                 p.minimize_l2(biomass)
             yield gene, p.get_flux(biomass) / wt_biomass
         except moma.MOMAError:
-            yield gene, 0.0
+            yield gene, -5.0
         # Do upon exit
         finally:
             for c in constr:

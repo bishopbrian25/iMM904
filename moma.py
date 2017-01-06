@@ -54,7 +54,6 @@ class ConstraintGroup(object):
 class MOMAProblem(object):
     def __init__(self, model, solver):
         self._prob = solver.create_problem()
-
         self._prob._cp.set_log_stream(None)
         self._prob._cp.set_error_stream(None)
         self._prob._cp.set_warning_stream(None)
@@ -78,7 +77,7 @@ class MOMAProblem(object):
         massbalance_lhs = {
             spec: 0 for spec in product(model.compounds, ('wt', 'mod'))}
         for (compound, reaction_id), value in iteritems(self._model.matrix):
-            #massbalance_lhs[compound, 'wt'] += v_wt(reaction_id) * value
+            massbalance_lhs[compound, 'wt'] += v_wt(reaction_id) * value
             massbalance_lhs[compound, 'mod'] += v(reaction_id) * value
         for compound, lhs in iteritems(massbalance_lhs):
             mass_balance.add(lhs == 0)
@@ -109,7 +108,7 @@ class MOMAProblem(object):
             self._remove_constr = []
 
     def _solve_fba(self, objective):
-        self._prob.set_objective(self._v(objective))
+        self._prob.set_objective(self._v_wt(objective))
 
         result = self._solve(lp.ObjectiveSense.Maximize)
         if not result:
@@ -125,7 +124,7 @@ class MOMAProblem(object):
 
         # key = 'reaction1'
         for key in self._model.reactions:
-            fba_fluxes[key] = flux_result.get_value(self._v(key))
+            fba_fluxes[key] = flux_result.get_value(self._v_wt(key))
         return fba_fluxes
 
 
@@ -133,7 +132,7 @@ class MOMAProblem(object):
         # Run the FBA
         flux_result = self._solve_fba(objective)
         # Pull out the value
-        return flux_result.get_value(self._v(objective))
+        return flux_result.get_value(self._v_wt(objective))
 
     # Implemetnation of the LP2 MOMA algorithm
     # We try to maximize biomass, by keeping the fluxes relitively the same as the wildtype.
@@ -168,11 +167,12 @@ class MOMAProblem(object):
         self._prob.set_objective(z.sum(self._adjustment_reactions()))
 
         # The result of minimizing z
-        result = self._solve(MIQP.ObjectiveSense.Minimize)
+        result = self._solve(lp.ObjectiveSense.Minimize)
 
 
         # Need to make sure we catch any problems that occur in the solver
         if not result:
+            print("ERRROR")
             raise MOMAError('Unable to solve LP2 MOMA: {}'.format(
                 result.status))
 
@@ -250,34 +250,33 @@ class MOMAProblem(object):
 
         # Need to make sure we catch any problems that occur in the solver
         if not result:
+            print("ERROR")
             raise MOMAError('Unable to solve QLP2 MOMA: {}'.format(result.status))
+            print("Gene knockout flux: " + str(self.get_flux(objective)))
 
         # Print out the flux
         print("Gene knockout flux: " + str(self.get_flux(objective)))
-
-
 
     def minimize_l2(self, objective):
-        wt_result = self._solve_fba(objective)
-        wt_obj = wt_result.get_value(self._v(objective))
+            wt_result = self._solve_fba(objective)
+            wt_obj = wt_result.get_value(self._v_wt(objective))
 
-        obj_expr = 0
-        for reaction in self._adjustment_reactions():
-            v_wt = self._v_wt(reaction)
-            v = self._v(reaction)
-            obj_expr += (v_wt - v)**2
+            obj_expr = 0
+            for reaction in self._adjustment_reactions():
+                v_wt = self._v_wt(reaction)
+                v = self._v(reaction)
+                obj_expr += (v_wt - v)**2
 
-        self._prob.set_objective(obj_expr)
+            self._prob.set_objective(obj_expr)
 
-        v_wt_obj = self._v_wt(objective)
-        with self.constraints(v_wt_obj == wt_obj):
-            result = self._solve(lp.ObjectiveSense.Minimize)
+            v_wt_obj = self._v_wt(objective)
+            with self.constraints(v_wt_obj == wt_obj):
+                result = self._solve(lp.ObjectiveSense.Minimize)
 
-        if not result:
-            raise MOMAError('Unable to solve L2 MOMA: {}'.format(
-                result.status))
-        # Print out the flux
-        print("Gene knockout flux: " + str(self.get_flux(objective)))
+
+
+            print("Gene knockout flux: " + str(self.get_flux(objective)))
+
 
     def get_flux(self, reaction):
         return self._prob.result.get_value(self._v(reaction))
